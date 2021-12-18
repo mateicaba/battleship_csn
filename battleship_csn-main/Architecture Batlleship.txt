@@ -1,0 +1,48 @@
+**Double click "Battleship.exe"
+**"Home" window opens
+  **Displays "Instructions" button and "Play" button
+  **"Instructions" button opens "Rules" window
+  **"Rules" window opens after "Home" window closes
+    **Displays rules as text 
+    **Displays "Back" button
+    **Left click "Back" button
+    **"Back" button opens "Home" window
+  **"Play" button opens new window
+  **"Intro" window opens 
+    **Displays hollow bullet point list with "Easy", "Medium", "Hard", "Letuchiy" difficulties
+      **"Easy" difficulty is random
+      **"Medium" difficulty has random chance of implementing "Hard" difficulty algorithm and "Easy" difficulty algorithm
+      **"Hard" difficulty (algorithm tbd)
+      **"Letuchiy" difficulty opens "Lose" window upon pressing "Start" button
+    **Displays unavailable "Start" button
+    **Displays Textbox to enter name
+      **If name entered is longer than 3 characters and shorter than 11 and a difficulty has been selected, "Start" button becomes available
+    **Left click "Start" button
+    **"Placement" window opens
+      **Displays "Done" button, matrix map and 5 ships outside of the map
+      **"Done" button initially unavailable
+      **Left Click on a ship and then left click on the square where you want the ship to be placed
+      **In order to change orientation of ship (N-S -> E-W) press "SPACEBAR"
+      **After all of the ships have been placed, "Done" button becomes available
+      **Left click "Done" button
+      **"Game" window opens
+        **Player and computer take turns hitting a single square per turn
+        **When a hit is confirmed, square becomes yellow
+        **When a ship is destroyed, square becomes red
+        **Game ends when either a player or the computer has destroyed all of the opponent's ships
+      **After game ends, in accordance with the result, either "Win" window opens or "Lose" window opens
+        **"Win" window displays a block of text congratulating the player, a "Play Again" button and an "Exit" button
+        **"Lose" window displays a block of text consoling the player, a "Play Again" button and an "Exit" button
+          **"Exit" button closes game
+          **"Play Again" button opens "Game" window
+
+"Hard" difficulty algorithm:
+- picks random square to hit
+- if miss, pick other random square but never the same square
+- if hit, memorise hit square location
+- hits the 4 adjacent squares in order up, left, down, right (at corners and edges only hit the 2 or 3 available squares
+- if hit, continue down the line determined by the two hit squares in initial direction (if up hits, continue up ; if left hits, continue left)
+- if miss and ship is not destroyed, hit squares in the opposite direction of 2nd hit until ship is destroyed then delete initial hit location
+- else delete initial hit location
+    
+  

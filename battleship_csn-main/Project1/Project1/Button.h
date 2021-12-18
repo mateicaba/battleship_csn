@@ -1,15 +1,13 @@
 #pragma once
+
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-
 class Button {
 public:
-	Button() {
+	Button() { }
 
-	}
-
-	Button(std::string t, sf::Vector2f size,int charSize, sf::Color bgColor, sf::Color textColor) {
+	Button(std::string t, sf::Vector2f size, int charSize, sf::Color bgColor, sf::Color textColor) {
 		text.setString(t);
 		text.setFillColor(textColor);
 		text.setCharacterSize(charSize);
@@ -32,9 +30,10 @@ public:
 
 	void setPosition(sf::Vector2f pos) {
 		button.setPosition(pos);
-		float xPos = (pos.x + button.getLocalBounds().width / 2 - (text.getLocalBounds().width / 2));
-		float yPos = (pos.y + button.getLocalBounds().height / 6 - (text.getLocalBounds().height / 2));
-		text.setPosition({ xPos,yPos });
+
+		float xPos = (pos.x + button.getGlobalBounds().width / 2) - (text.getLocalBounds().width / 2);
+		float yPos = (pos.y + button.getGlobalBounds().height / 6) - (text.getLocalBounds().height / 2);
+		text.setPosition({ xPos, yPos });
 	}
 
 	void drawTo(sf::RenderWindow& window) {
@@ -55,8 +54,11 @@ public:
 		if (mouseX<btnxPosWidth && mouseX>btnPosX && mouseY<btnyPosHeight && mouseY>btnPosY) {
 			return true;
 		}
-		return false;
+		else {
+			return false;
+		}
 	}
+
 private:
 	sf::RectangleShape button;
 	sf::Text text;

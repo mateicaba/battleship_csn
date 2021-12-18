@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Textbox.h"
-#include"button.h"
+#include "Button.h"
 
 int main() {
 	sf::RenderWindow window;
@@ -16,45 +16,56 @@ int main() {
 
 	sf::Font arial;
 	arial.loadFromFile("arial.ttf");
-	sf::Font Battleground;
-	Battleground.loadFromFile("Battleground.ttf");
-
 	Textbox textbox1(15, sf::Color::White, false);
-	textbox1.setFont(Battleground);
+	textbox1.setFont(arial);
 	textbox1.setPosition({ 460,600 });
 	textbox1.setLimit(true, 10);
 
-	Button btn1("Play", { 200,50 }, 40, sf::Color::Cyan, sf::Color::Black);
-	btn1.setFont(Battleground);
-	btn1.setPosition({ 400,400 });
-	
+	sf::Font battleground;
+	battleground.loadFromFile("Battleground.ttf");
 
-	Button btn2("Instructions", { 200,50 }, 40, sf::Color::Cyan, sf::Color::Black);
-	btn2.setFont(Battleground);
+	/*
+	sf::Font battleground;
+	battleground.loadFromFile("Battleground.ttf");
+	Textbox textbox2(25, sf::Color::White, true);
+	textbox2.setFont(battleground);
+	textbox2.setPosition({ 460,100 });
+	textbox2.setLimit(true, 11);
+	textbox2.drawTo("Battleship");
+
+	!!!MAKE WORK CYKA BLYAT!!! 
+	Ar trebui sa afiseze titlu
+	*/
+
+	Button btn1("Instructions", { 200, 50 }, 40, sf::Color::Cyan, sf::Color::Black);
+	btn1.setFont(battleground);
+	btn1.setPosition({ 400,400 });
+
+	Button btn2("Play", { 200, 50 }, 40, sf::Color::Red, sf::Color::White);
+	btn2.setFont(battleground);
 	btn2.setPosition({ 400,500 });
 
-	Button btn3("Battleship", { 600,100 }, 120, sf::Color::Black, sf::Color::White);
-	btn3.setFont(Battleground);
-	btn3.setPosition({ 190,150 });
+	Button btn3("BATTLESHIP", { 800,10 }, 160, sf::Color::Black, sf::Color::White);
+	btn3.setFont(battleground);
+	btn3.setPosition({ 100,200 });
 
-	Button btn4("Back", { 200,50 }, 40, sf::Color::Cyan, sf::Color::Black);
-	btn4.setFont(Battleground);
-	btn4.setPosition({ 400,700 });
-	
-	Button btn5("1 Place your ships on the grid", { 200,50 }, 20, sf::Color::Black, sf::Color::White);
-	btn5.setFont(Battleground);
+	Button btn4("B A C K", { 200, 50 }, 40, sf::Color::Red, sf::Color::White);
+	btn4.setFont(battleground);
+	btn4.setPosition({ 400,500 });
+
+	Button btn5("1 Place your ships on the grid", {200,50}, 20, sf::Color::Black, sf::Color::White);
+	btn5.setFont(battleground);
 	btn5.setPosition({ 400,350 });
-	btn5.drawTo(window);
 
 	Button btn6("2 Guess where the enemy placed their ships", { 300,50 }, 20, sf::Color::Black, sf::Color::White);
-	btn6.setFont(Battleground);
+	btn6.setFont(battleground);
 	btn6.setPosition({ 400,400 });
-	btn6.drawTo(window);
+
+
 
 	//Main loop
 	while (window.isOpen()) {
 		sf::Event Event;
-		sf::Event EventInstructions;
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
 			textbox1.setSelected(true);
@@ -77,70 +88,57 @@ int main() {
 					btn1.setBackColor(sf::Color::Black);
 					btn1.setTextColor(sf::Color::Cyan);
 				}
+				else if (btn2.isMouseOver(window)) {
+					btn2.setBackColor(sf::Color::Black);
+					btn2.setTextColor(sf::Color::Red); 
+				}
 				else {
 					btn1.setBackColor(sf::Color::Cyan);
+					btn2.setBackColor(sf::Color::Red);
+
 					btn1.setTextColor(sf::Color::Black);
-				}
-				if (btn2.isMouseOver(window)) {
-					btn2.setBackColor(sf::Color::Black);
-					btn2.setTextColor(sf::Color::Cyan);
-				}
-				else {
-					btn2.setBackColor(sf::Color::Cyan);
-					btn2.setTextColor(sf::Color::Black);
+					btn2.setTextColor(sf::Color::White);
 				}
 				break;
 			case sf::Event::MouseButtonPressed:
 				if (btn1.isMouseOver(window)) {
-					std::cout << "You clicked the play button\n";
+					std::cout << "You clicked the button\n";
 				}
-				if (btn2.isMouseOver(window)) {
-					std::cout << "You clicked the instructions button\n";
-					bool ok = false;
+				else if (btn2.isMouseOver(window)) {
+					std::cout << "You clicked the other button\n";
+
 					do {
-						
-						switch (Event.type) {
-
-						case sf::Event::Closed:
-							window.close();
-
-						case sf::Event::MouseMoved:
-							if (btn4.isMouseOver(window)) {
-								btn4.setBackColor(sf::Color::Black);
-								btn4.setTextColor(sf::Color::Cyan);
-							}
-							else {
-								btn1.setBackColor(sf::Color::Cyan);
-								btn1.setTextColor(sf::Color::Black);
-							}
-							break;
-						case sf::Event::MouseButtonPressed:
-							if (btn4.isMouseOver(window)&& sf::Event::MouseButtonPressed) {
-								std::cout << "You clicked the back button\n";
-								ok = true;
-								
-							}
-							break;
-							
-						}
 						window.clear();
 						btn3.drawTo(window);
 						btn4.drawTo(window);
 						btn5.drawTo(window);
 						btn6.drawTo(window);
+						switch (Event.type) {
+						case sf::Event::MouseMoved:
+							if (btn4.isMouseOver(window)) {
+								btn4.setBackColor(sf::Color::Black);
+								btn4.setTextColor(sf::Color::Red);
+							}
+							else {
+								btn4.setBackColor(sf::Color::Red);
+								btn4.setTextColor(sf::Color::Black);
+							}
+						}
 						window.display();
-					} while (!ok);
+					} while (sf::Event::MouseButtonPressed && btn4.isMouseOver(window));
+
+					/*ADD LINK TO NEW WINDOW AND MAKE IT PRETTY*/
+
 				}
 			}
-
+		
 		}
 		window.clear();
 		textbox1.drawTo(window);
+		/*textbox2.drawTo(window);*/
 		btn1.drawTo(window);
 		btn2.drawTo(window);
 		btn3.drawTo(window);
 		window.display();
 	}
-	
-
 }
