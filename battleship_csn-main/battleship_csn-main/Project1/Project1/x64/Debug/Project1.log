@@ -9,18 +9,4 @@ D:\Facultate\C++\Battleship2.1.1\battleship_csn-main\battleship_csn-main\Project
           [
               T=int
           ]
-  Main.cpp
-D:\Facultate\C++\Battleship2.1.1\battleship_csn-main\battleship_csn-main\Project1\Project1\button.h(46,16): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=int
-          ]
-D:\Facultate\C++\Battleship2.1.1\battleship_csn-main\battleship_csn-main\Project1\Project1\button.h(47,16): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=int
-          ]
-D:\Facultate\C++\Battleship2.1.1\battleship_csn-main\battleship_csn-main\Project1\Project1\Main.cpp(62,13): warning C4101: 'EventInstructions': unreferenced local variable
-  State.cpp
-  Generating Code...
   Project1.vcxproj -> D:\Facultate\C++\Battleship2.1.1\battleship_csn-main\battleship_csn-main\Project1\x64\Debug\Project1.exe
