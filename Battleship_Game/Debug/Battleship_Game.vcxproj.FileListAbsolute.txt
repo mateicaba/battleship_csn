@@ -1,0 +1,2 @@
+G:\Battleship_Game\Debug\Battleship_Game.exe
+D:\Facultate\C++\Battleship3.3\Battleship_Game\Debug\Battleship_Game.exe
